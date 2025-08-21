@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - Claude Code Alias</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">CC Alias</span>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="requirements.html">Requirements</a>
+                <a href="installation.html" class="active">Installation</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="troubleshooting.html">Troubleshooting</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Installation</span>
+            </div>
+            <h1 class="page-title">Installation Guide</h1>
+            <p class="page-description">
+                Choose your preferred installation method and get CC Alias up and running in minutes
+            </p>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab('quick-install')">Quick Install</button>
+                    <button class="tab-button" onclick="openTab('manual-install')">Manual Install</button>
+                    <button class="tab-button" onclick="openTab('docker-setup')">Docker Setup</button>
+                </div>
+
+                <div id="quick-install" class="tab-content active">
+                    <div class="info-card">
+                        <strong>⚡ Fastest Method:</strong> One-line installation script that automatically sets everything up.
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Run the Installation Command</h3>
+                        <p>Open your terminal and run this single command:</p>
+                        <div class="code-block">
+                            <pre><code>curl -s https://raw.githubusercontent.com/netors/cc-alias/main/create_cc_alias.sh | bash</code></pre>
+                        </div>
+                        <div class="info-card warning">
+                            <strong>Security Notice:</strong> Always review scripts before piping to bash. You can view the script content at the <a href="https://github.com/netors/cc-alias/blob/main/create_cc_alias.sh" target="_blank">GitHub Repository</a>.
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Activate the Alias</h3>
+                        <p>To start using the <code>cc</code> command immediately:</p>
+                        <div class="code-block">
+                            <pre><code>source ~/.zprofile</code></pre>
+                        </div>
+                        <p>Or simply open a new terminal window.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Verify Installation</h3>
+                        <p>Test that everything is working:</p>
+                        <div class="code-block">
+                            <pre><code>cc --help</code></pre>
+                        </div>
+                        <div class="info-card success">
+                            <strong>Success!</strong> If you see Claude Code's help menu, the installation is complete.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="manual-install" class="tab-content">
+                    <div class="info-card">
+                        <strong>🔧 Recommended:</strong> Step-by-step installation for users who prefer to review each step.
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Download the Script</h3>
+                        <p>Save the installation script to your local machine:</p>
+                        <div class="code-block">
+                            <pre><code>curl -o create_cc_alias.sh https://raw.githubusercontent.com/netors/cc-alias/main/create_cc_alias.sh</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Review the Script</h3>
+                        <p>Inspect the script content to understand what it does:</p>
+                        <div class="code-block">
+                            <pre><code>cat create_cc_alias.sh</code></pre>
+                        </div>
+                        <p>The script will:</p>
+                        <ul>
+                            <li>Check for required dependencies</li>
+                            <li>Create <code>~/.env.cc</code> configuration file</li>
+                            <li>Add the <code>cc</code> function to <code>~/.zprofile</code></li>
+                            <li>Validate environment variables</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Make it Executable</h3>
+                        <p>Grant execution permissions to the script:</p>
+                        <div class="code-block">
+                            <pre><code>chmod +x create_cc_alias.sh</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Run the Installation</h3>
+                        <p>Execute the script:</p>
+                        <div class="code-block">
+                            <pre><code>./create_cc_alias.sh</code></pre>
+                        </div>
+                        <p>Follow the interactive prompts to complete the installation.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <h3 class="step-title">Activate and Test</h3>
+                        <p>Load the new configuration:</p>
+                        <div class="code-block">
+                            <pre><code>source ~/.zprofile
+cc --help</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="docker-setup" class="tab-content">
+                    <div class="info-card">
+                        <strong>📊 Optional:</strong> Set up the OpenTelemetry collector with Grafana dashboards.
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Install Docker Desktop</h3>
+                        <p>If you haven't already, install Docker Desktop for Mac:</p>
+                        <div class="requirement-actions">
+                            <a href="https://docs.docker.com/desktop/setup/install/mac-install/" target="_blank" class="btn btn-primary">
+                                Download Docker Desktop
+                                <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Clone the OTEL Repository</h3>
+                        <p>Get the Claude Code OTEL project:</p>
+                        <div class="code-block">
+                            <pre><code>git clone https://github.com/ColeMurray/claude-code-otel.git
+cd claude-code-otel</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Start the Containers</h3>
+                        <p>Launch the OTEL collector and Grafana:</p>
+                        <div class="code-block">
+                            <pre><code>docker-compose up -d</code></pre>
+                        </div>
+                        <p>This will start:</p>
+                        <ul>
+                            <li>OpenTelemetry Collector on port 4317</li>
+                            <li>Grafana Dashboard on port 3000</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Access Grafana</h3>
+                        <p>Open your browser and navigate to:</p>
+                        <div class="code-block">
+                            <pre><code>http://localhost:3000</code></pre>
+                        </div>
+                        <p>Default credentials:</p>
+                        <ul>
+                            <li>Username: <code>admin</code></li>
+                            <li>Password: <code>admin</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <h3 class="step-title">Test the Connection</h3>
+                        <p>Launch Claude Code with the alias to verify OTEL connection:</p>
+                        <div class="code-block">
+                            <pre><code>cc</code></pre>
+                        </div>
+                        <p>You should see:</p>
+                        <div class="code-block">
+                            <pre><code>Checking connection to OTEL collector at localhost:4317...
+✅ OTEL collector is reachable at localhost:4317</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="content-section">
+                <h2 class="section-header">
+                    <span class="section-icon">📝</span>
+                    Post-Installation Configuration
+                </h2>
+                
+                <h3>Customize Environment Variables</h3>
+                <p>Edit your <code>~/.env.cc</code> file to adjust settings:</p>
+                <div class="code-block">
+                    <pre><code>nano ~/.env.cc</code></pre>
+                </div>
+                
+                <h3>Update the Alias</h3>
+                <p>To update your CC alias after changes, simply run the installer again:</p>
+                <div class="code-block">
+                    <pre><code>./create_cc_alias.sh</code></pre>
+                </div>
+                <p>The script will detect the existing installation and prompt you to update.</p>
+                
+                <h3>Uninstall</h3>
+                <p>To remove the CC alias:</p>
+                <ol>
+                    <li>Edit <code>~/.zprofile</code> and remove the <code>cc()</code> function</li>
+                    <li>Delete the configuration file: <code>rm ~/.env.cc</code></li>
+                </ol>
+            </section>
+
+            <div class="nav-footer">
+                <a href="requirements.html" class="nav-prev">
+                    <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Requirements</span>
+                </a>
+                <a href="documentation.html" class="nav-next">
+                    <span>Documentation</span>
+                    <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">CC Alias</h3>
+                    <p class="footer-description">
+                        A simple utility that creates a command-line shortcut for launching Claude Code with custom environment configurations.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/netors/cc-alias" target="_blank" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/eruysanchez" target="_blank" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="requirements.html">Requirements</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Docs</a></li>
+                        <li><a href="https://github.com/netors/cc-alias" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CC Alias Tool was created by <a href="https://x.com/eruysanchez" target="_blank">@eruysanchez</a> under <a href="https://github.com/netors/cc-alias/blob/main/LICENSE" target="_blank">CC0 1.0 Universal (Public Domain Dedication)</a> see <a href="file:///Users/netors/projects/github/netors/cc-alias/disclaimer.html">disclaimer</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

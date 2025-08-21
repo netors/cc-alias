@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - Claude Code Alias</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">CC Alias</span>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="requirements.html">Requirements</a>
+                <a href="installation.html">Installation</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="troubleshooting.html" class="active">Troubleshooting</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Troubleshooting</span>
+            </div>
+            <h1 class="page-title">Troubleshooting Guide</h1>
+            <p class="page-description">
+                Solutions to common issues and problems you might encounter
+            </p>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-main">
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🚨</span>
+                            Installation Issues
+                        </h2>
+                        
+                        <div class="requirement-card">
+                            <h3>Script Permission Denied</h3>
+                            <div class="info-card danger">
+                                <strong>Error:</strong> <code>-bash: ./create_cc_alias.sh: Permission denied</code>
+                            </div>
+                            <p><strong>Solution:</strong> Make the script executable:</p>
+                            <div class="code-block">
+                                <pre><code>chmod +x create_cc_alias.sh
+./create_cc_alias.sh</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Claude Binary Not Found</h3>
+                            <div class="info-card danger">
+                                <strong>Error:</strong> <code>🛑 The 'claude' binary could not be found in your PATH</code>
+                            </div>
+                            <p><strong>Solution:</strong> Install Claude Code CLI first:</p>
+                            <ol>
+                                <li>Visit <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code installation guide</a></li>
+                                <li>Follow the installation instructions for your system</li>
+                                <li>Verify installation: <code>claude --version</code></li>
+                                <li>Run the CC alias installer again</li>
+                            </ol>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Node.js Version Too Old</h3>
+                            <div class="info-card danger">
+                                <strong>Error:</strong> <code>🛑 Your Node.js version is too old</code>
+                            </div>
+                            <p><strong>Solution:</strong> Upgrade Node.js to version 22 or higher:</p>
+                            <div class="code-block">
+                                <pre><code># Using Homebrew
+brew install node@22
+brew link --overwrite node@22
+
+# Or using nvm
+nvm install 22
+nvm use 22
+nvm alias default 22</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Alias Already Exists</h3>
+                            <div class="info-card warning">
+                                <strong>Message:</strong> <code>✅ The 'cc' function already exists in ~/.zprofile</code>
+                            </div>
+                            <p><strong>Solution:</strong> The installer will prompt you to update. Choose 'y' to update or 'n' to keep existing.</p>
+                            <p>To manually remove and reinstall:</p>
+                            <div class="code-block">
+                                <pre><code># Edit ~/.zprofile and remove the cc() function
+nano ~/.zprofile
+# Delete the cc() function block
+
+# Run installer again
+./create_cc_alias.sh</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🔌</span>
+                            Connection Issues
+                        </h2>
+                        
+                        <div class="requirement-card">
+                            <h3>OTEL Collector Unreachable</h3>
+                            <div class="info-card warning">
+                                <strong>Warning:</strong> <code>Could not connect to OTEL collector at localhost:4317</code>
+                            </div>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li><strong>Start the OTEL collector:</strong>
+                                    <div class="code-block">
+                                        <pre><code>cd claude-code-otel
+docker-compose up -d</code></pre>
+                                    </div>
+                                </li>
+                                <li><strong>Check if Docker is running:</strong>
+                                    <div class="code-block">
+                                        <pre><code>docker ps</code></pre>
+                                    </div>
+                                </li>
+                                <li><strong>Verify port availability:</strong>
+                                    <div class="code-block">
+                                        <pre><code>lsof -i :4317</code></pre>
+                                    </div>
+                                </li>
+                                <li><strong>Skip OTEL setup:</strong> Press 's' when prompted to launch without telemetry</li>
+                            </ol>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Netcat Not Available</h3>
+                            <div class="info-card warning">
+                                <strong>Warning:</strong> <code>⚠️ The 'nc' (netcat) command is not available</code>
+                            </div>
+                            <p>This is optional but recommended. To install:</p>
+                            <div class="code-block">
+                                <pre><code>brew install netcat</code></pre>
+                            </div>
+                            <p>The script will still work without netcat, but won't test connectivity.</p>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Invalid OTEL Endpoint Format</h3>
+                            <div class="info-card warning">
+                                <strong>Warning:</strong> <code>Could not parse host from OTEL_EXPORTER_OTLP_ENDPOINT</code>
+                            </div>
+                            <p><strong>Solution:</strong> Check your endpoint format in <code>~/.env.cc</code>:</p>
+                            <div class="code-block">
+                                <pre><code># Correct formats:
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+OTEL_EXPORTER_OTLP_ENDPOINT=https://otel.example.com:4317
+
+# Incorrect formats:
+OTEL_EXPORTER_OTLP_ENDPOINT=localhost:4317  # Missing protocol
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost  # Missing port</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">⚙️</span>
+                            Configuration Issues
+                        </h2>
+                        
+                        <div class="requirement-card">
+                            <h3>Environment Variables Not Loading</h3>
+                            <div class="info-card warning">
+                                <strong>Warning:</strong> <code>~/.env.cc file not found</code>
+                            </div>
+                            <p><strong>Solution:</strong> Create or restore the environment file:</p>
+                            <div class="code-block">
+                                <pre><code># Re-run the installer to create it
+./create_cc_alias.sh
+
+# Or manually create it
+cat > ~/.env.cc << 'EOF'
+CLAUDE_CODE_ENABLE_TELEMETRY=1
+OTEL_METRICS_EXPORTER=otlp
+OTEL_LOGS_EXPORTER=otlp
+OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+EOF</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Invalid Environment Variable Format</h3>
+                            <div class="info-card warning">
+                                <strong>Warning:</strong> <code>Ignoring invalid line in ~/.env.cc</code>
+                            </div>
+                            <p><strong>Solution:</strong> Check variable format:</p>
+                            <div class="code-block">
+                                <pre><code># Correct format:
+VARIABLE_NAME=value
+ANOTHER_VAR="value with spaces"
+
+# Incorrect format:
+VARIABLE NAME=value  # Space in name
+export VARIABLE=value  # Don't use 'export'
+VARIABLE = value  # Spaces around =</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>CC Command Not Working</h3>
+                            <div class="info-card danger">
+                                <strong>Error:</strong> <code>zsh: command not found: cc</code>
+                            </div>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li><strong>Reload your profile:</strong>
+                                    <div class="code-block">
+                                        <pre><code>source ~/.zprofile</code></pre>
+                                    </div>
+                                </li>
+                                <li><strong>Open a new terminal window</strong></li>
+                                <li><strong>Verify the function exists:</strong>
+                                    <div class="code-block">
+                                        <pre><code>grep "cc()" ~/.zprofile</code></pre>
+                                    </div>
+                                </li>
+                                <li><strong>Check your shell:</strong>
+                                    <div class="code-block">
+                                        <pre><code>echo $SHELL  # Should be /bin/zsh</code></pre>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🐳</span>
+                            Docker & Grafana Issues
+                        </h2>
+                        
+                        <div class="requirement-card">
+                            <h3>Docker Not Running</h3>
+                            <div class="info-card danger">
+                                <strong>Error:</strong> <code>Cannot connect to the Docker daemon</code>
+                            </div>
+                            <p><strong>Solution:</strong> Start Docker Desktop:</p>
+                            <ol>
+                                <li>Open Docker Desktop application</li>
+                                <li>Wait for Docker to start (icon turns green)</li>
+                                <li>Verify: <code>docker ps</code></li>
+                            </ol>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Port Already in Use</h3>
+                            <div class="info-card danger">
+                                <strong>Error:</strong> <code>bind: address already in use</code>
+                            </div>
+                            <p><strong>Solution:</strong> Find and stop the conflicting process:</p>
+                            <div class="code-block">
+                                <pre><code># Find what's using port 4317
+lsof -i :4317
+
+# Find what's using port 3000 (Grafana)
+lsof -i :3000
+
+# Kill the process (replace PID with actual process ID)
+kill -9 PID
+
+# Or change the port in docker-compose.yml</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Grafana Login Issues</h3>
+                            <div class="info-card warning">
+                                <strong>Problem:</strong> Can't login to Grafana
+                            </div>
+                            <p><strong>Default credentials:</strong></p>
+                            <ul>
+                                <li>Username: <code>admin</code></li>
+                                <li>Password: <code>admin</code></li>
+                            </ul>
+                            <p>To reset admin password:</p>
+                            <div class="code-block">
+                                <pre><code>docker exec -it grafana grafana-cli admin reset-admin-password newpassword</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🔧</span>
+                            Advanced Troubleshooting
+                        </h2>
+                        
+                        <div class="requirement-card">
+                            <h3>Debug Mode</h3>
+                            <p>Enable verbose output for troubleshooting:</p>
+                            <div class="code-block">
+                                <pre><code># Run installer with debug output
+bash -x create_cc_alias.sh
+
+# Test the cc function with debug
+set -x
+cc
+set +x</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Manual Cleanup</h3>
+                            <p>To completely remove CC alias and start fresh:</p>
+                            <div class="code-block">
+                                <pre><code># Remove the cc function from ~/.zprofile
+sed -i '' '/^cc()/,/^}/d' ~/.zprofile
+
+# Remove environment file
+rm ~/.env.cc
+
+# Remove Docker containers (if using)
+docker-compose down -v
+
+# Start fresh
+./create_cc_alias.sh</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h3>Check All Components</h3>
+                            <p>Comprehensive system check:</p>
+                            <div class="code-block">
+                                <pre><code>#!/bin/bash
+echo "=== System Check ==="
+echo "Shell: $SHELL"
+echo "Claude: $(which claude || echo 'Not found')"
+echo "Node: $(node --version 2>/dev/null || echo 'Not found')"
+echo "Docker: $(docker --version 2>/dev/null || echo 'Not found')"
+echo "Netcat: $(which nc || echo 'Not found')"
+echo ""
+echo "=== Configuration Check ==="
+echo "Profile exists: $(test -f ~/.zprofile && echo 'Yes' || echo 'No')"
+echo "CC function: $(grep -q 'cc()' ~/.zprofile 2>/dev/null && echo 'Yes' || echo 'No')"
+echo "Env file: $(test -f ~/.env.cc && echo 'Yes' || echo 'No')"
+echo ""
+echo "=== OTEL Check ==="
+nc -zv localhost 4317 2>&1 || echo "OTEL not reachable"</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">💬</span>
+                            Getting Help
+                        </h2>
+                        
+                        <p>If you're still experiencing issues:</p>
+                        
+                        <ol>
+                            <li><strong>Check the GitHub Issues:</strong> <a href="https://github.com/netors/cc-alias/issues" target="_blank">View existing issues</a></li>
+                            <li><strong>Create a new issue</strong> with:
+                                <ul>
+                                    <li>Your macOS version</li>
+                                    <li>Node.js version (<code>node --version</code>)</li>
+                                    <li>Claude Code version (<code>claude --version</code>)</li>
+                                    <li>The exact error message</li>
+                                    <li>Steps to reproduce the issue</li>
+                                </ul>
+                            </li>
+                            <li><strong>Community support:</strong> Check the <a href="https://github.com/ColeMurray/claude-code-otel" target="_blank">Claude Code OTEL project</a> for telemetry-specific issues</li>
+                        </ol>
+                    </section>
+                </div>
+
+                <aside class="content-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Common Fixes</h3>
+                        <ul class="checklist">
+                            <li>Reload profile: <code>source ~/.zprofile</code></li>
+                            <li>Check Docker: <code>docker ps</code></li>
+                            <li>Test OTEL: <code>nc -zv localhost 4317</code></li>
+                            <li>Verify Claude: <code>claude --version</code></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <h3>Quick Actions</h3>
+                        <a href="#installation-issues" class="btn btn-secondary btn-block">Installation Issues</a>
+                        <a href="#connection-issues" class="btn btn-secondary btn-block">Connection Issues</a>
+                        <a href="#configuration-issues" class="btn btn-secondary btn-block">Config Issues</a>
+                        <a href="#docker-grafana-issues" class="btn btn-secondary btn-block">Docker Issues</a>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <h3>Need More Help?</h3>
+                        <p>Can't find your issue here?</p>
+                        <a href="https://github.com/netors/cc-alias/issues/new" target="_blank" class="btn btn-primary btn-block">
+                            Report Issue
+                            <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                            </svg>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="nav-footer">
+                <a href="documentation.html" class="nav-prev">
+                    <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Documentation</span>
+                </a>
+                <a href="index.html" class="nav-next">
+                    <span>Back to Home</span>
+                    <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">CC Alias</h3>
+                    <p class="footer-description">
+                        A simple utility that creates a command-line shortcut for launching Claude Code with custom environment configurations.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/netors/cc-alias" target="_blank" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/eruysanchez" target="_blank" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="requirements.html">Requirements</a></li>
+                        <li><a href="installation.html">Installation Guide</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Docs</a></li>
+                        <li><a href="https://github.com/netors/cc-alias" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CC Alias Tool was created by <a href="https://x.com/eruysanchez" target="_blank">@eruysanchez</a> under <a href="https://github.com/netors/cc-alias/blob/main/LICENSE" target="_blank">CC0 1.0 Universal (Public Domain Dedication)</a> see <a href="file:///Users/netors/projects/github/netors/cc-alias/disclaimer.html">disclaimer</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

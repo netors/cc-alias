@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Claude Code Alias</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">CC Alias</span>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="requirements.html">Requirements</a>
+                <a href="installation.html">Installation</a>
+                <a href="documentation.html" class="active">Documentation</a>
+                <a href="troubleshooting.html">Troubleshooting</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Documentation</span>
+            </div>
+            <h1 class="page-title">Documentation</h1>
+            <p class="page-description">
+                Complete guide to using and configuring Claude Code Alias
+            </p>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-main">
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🚀</span>
+                            Basic Usage
+                        </h2>
+                        
+                        <h3>Launching Claude Code</h3>
+                        <p>Once installed, you can launch Claude Code from any terminal with the simple command:</p>
+                        <div class="code-block">
+                            <pre><code>cc</code></pre>
+                        </div>
+                        <p>This automatically:</p>
+                        <ul>
+                            <li>Loads your custom environment variables from <code>~/.env.cc</code></li>
+                            <li>Validates the OTEL endpoint connection</li>
+                            <li>Launches Claude Code with telemetry enabled</li>
+                        </ul>
+
+                        <h3>Passing Arguments</h3>
+                        <p>You can pass any arguments to Claude Code as you normally would:</p>
+                        <div class="code-block">
+                            <pre><code># Show help
+cc --help
+
+# Open a specific project
+cc /path/to/project
+
+# Use specific model
+cc --model claude-3-opus
+
+# Combine multiple arguments
+cc --model claude-3-opus /path/to/project</code></pre>
+                        </div>
+
+                        <h3>Environment Loading</h3>
+                        <p>When you run <code>cc</code>, the function:</p>
+                        <ol>
+                            <li>Reads each line from <code>~/.env.cc</code></li>
+                            <li>Skips comments (lines starting with #) and empty lines</li>
+                            <li>Validates environment variable format</li>
+                            <li>Exports valid variables to the current session</li>
+                            <li>Warns about invalid lines</li>
+                        </ol>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">⚙️</span>
+                            Configuration
+                        </h2>
+                        
+                        <h3>Environment Variables</h3>
+                        <p>The <code>~/.env.cc</code> file contains all configuration options. Edit it with your preferred text editor:</p>
+                        <div class="code-block">
+                            <pre><code>nano ~/.env.cc
+# or
+vim ~/.env.cc</code></pre>
+                        </div>
+
+                        <h4>Core Settings</h4>
+                        <div class="requirement-card">
+                            <h4><code>CLAUDE_CODE_ENABLE_TELEMETRY</code></h4>
+                            <p>Enable or disable telemetry collection.</p>
+                            <div class="code-block">
+                                <pre><code>CLAUDE_CODE_ENABLE_TELEMETRY=1  # Enable (default)
+CLAUDE_CODE_ENABLE_TELEMETRY=0  # Disable</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h4><code>OTEL_METRICS_EXPORTER</code> / <code>OTEL_LOGS_EXPORTER</code></h4>
+                            <p>Configure which exporters to use for metrics and logs.</p>
+                            <div class="code-block">
+                                <pre><code>OTEL_METRICS_EXPORTER=otlp  # Use OTLP exporter
+OTEL_LOGS_EXPORTER=otlp     # Use OTLP exporter
+
+# Other options: console, none</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h4><code>OTEL_EXPORTER_OTLP_ENDPOINT</code></h4>
+                            <p>Set the endpoint for your OpenTelemetry collector.</p>
+                            <div class="code-block">
+                                <pre><code># Local collector (default)
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+
+# Remote collector
+OTEL_EXPORTER_OTLP_ENDPOINT=https://otel.example.com:4317</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="requirement-card">
+                            <h4><code>OTEL_EXPORTER_OTLP_PROTOCOL</code></h4>
+                            <p>Specify the protocol for OTLP communication.</p>
+                            <div class="code-block">
+                                <pre><code>OTEL_EXPORTER_OTLP_PROTOCOL=grpc       # gRPC (default)
+OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf  # HTTP with protobuf</code></pre>
+                            </div>
+                        </div>
+
+                        <h4>Performance Tuning</h4>
+                        <div class="requirement-card">
+                            <h4>Export Intervals</h4>
+                            <p>Control how frequently telemetry data is exported:</p>
+                            <div class="code-block">
+                                <pre><code># Metrics export interval (milliseconds)
+OTEL_METRIC_EXPORT_INTERVAL=10000  # 10 seconds
+OTEL_METRIC_EXPORT_INTERVAL=60000  # 1 minute (default)
+
+# Logs export interval (milliseconds)
+OTEL_LOGS_EXPORT_INTERVAL=5000   # 5 seconds (default)
+OTEL_LOGS_EXPORT_INTERVAL=1000   # 1 second (for debugging)</code></pre>
+                            </div>
+                        </div>
+
+                        <h4>Authentication</h4>
+                        <div class="requirement-card">
+                            <h4><code>OTEL_EXPORTER_OTLP_HEADERS</code></h4>
+                            <p>Add authentication headers if your collector requires them:</p>
+                            <div class="code-block">
+                                <pre><code># Bearer token authentication
+OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer your-token-here"
+
+# API key authentication
+OTEL_EXPORTER_OTLP_HEADERS="X-API-Key=your-api-key"
+
+# Multiple headers (comma-separated)
+OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer token,X-Custom=value"</code></pre>
+                            </div>
+                        </div>
+
+                        <h4>Privacy Settings</h4>
+                        <div class="requirement-card">
+                            <h4><code>OTEL_LOG_USER_PROMPTS</code></h4>
+                            <p>Control whether user prompts are included in telemetry:</p>
+                            <div class="code-block">
+                                <pre><code>OTEL_LOG_USER_PROMPTS=1  # Include prompts (default)
+OTEL_LOG_USER_PROMPTS=0  # Exclude prompts for privacy</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🔄</span>
+                            Connection Handling
+                        </h2>
+                        
+                        <h3>Automatic Connection Testing</h3>
+                        <p>When OTEL is configured, the alias automatically tests connectivity:</p>
+                        <div class="code-block">
+                            <pre><code>Checking connection to OTEL collector at localhost:4317...</code></pre>
+                        </div>
+
+                        <h3>Connection Failure Options</h3>
+                        <p>If the OTEL collector is unreachable, you'll see:</p>
+                        <div class="code-block">
+                            <pre><code>⚠️  Warning: Could not connect to OTEL collector at localhost:4317
+   The claude-code-otel listener does not appear to be running.
+   
+Would you like to (s)kip setting OTEL environment variables, (r)etry, or (c)ontinue anyway? [s/r/c]</code></pre>
+                        </div>
+
+                        <ul>
+                            <li><strong>Skip (s):</strong> Unsets all OTEL variables and launches Claude Code without telemetry</li>
+                            <li><strong>Retry (r):</strong> Exits so you can start the collector and try again</li>
+                            <li><strong>Continue (c):</strong> Proceeds with OTEL variables set despite connection failure</li>
+                        </ul>
+
+                        <h3>Non-Interactive Mode</h3>
+                        <p>When running in scripts or CI/CD pipelines:</p>
+                        <div class="code-block">
+                            <pre><code>echo "y" | ./create_cc_alias.sh  # Auto-confirm installation
+cc < /dev/null                    # Run in non-interactive mode</code></pre>
+                        </div>
+                        <p>In non-interactive mode, the script automatically continues with OTEL setup even if connection fails.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">📊</span>
+                            Grafana Integration
+                        </h2>
+                        
+                        <h3>Accessing Dashboards</h3>
+                        <p>Once your OTEL collector is running with Grafana:</p>
+                        <ol>
+                            <li>Open browser to <code>http://localhost:3000</code></li>
+                            <li>Login with default credentials (admin/admin)</li>
+                            <li>Navigate to Dashboards → Claude Code</li>
+                        </ol>
+
+                        <h3>Available Metrics</h3>
+                        <p>The Claude Code dashboard displays:</p>
+                        <ul>
+                            <li>Request rate and latency</li>
+                            <li>Token usage and costs</li>
+                            <li>Error rates and types</li>
+                            <li>Model performance comparison</li>
+                            <li>Usage patterns over time</li>
+                        </ul>
+
+                        <h3>Custom Dashboards</h3>
+                        <p>You can create custom Grafana dashboards using these metric namespaces:</p>
+                        <div class="code-block">
+                            <pre><code>claude_code_requests_total
+claude_code_tokens_used
+claude_code_latency_seconds
+claude_code_errors_total</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-header">
+                            <span class="section-icon">🔍</span>
+                            Advanced Usage
+                        </h2>
+                        
+                        <h3>Multiple Configurations</h3>
+                        <p>Create different environment files for various use cases:</p>
+                        <div class="code-block">
+                            <pre><code># Create alternative config
+cp ~/.env.cc ~/.env.cc.production
+
+# Temporarily use different config
+cp ~/.env.cc.production ~/.env.cc && cc
+
+# Script to switch configs
+alias cc-prod="cp ~/.env.cc.production ~/.env.cc && cc"
+alias cc-dev="cp ~/.env.cc.development ~/.env.cc && cc"</code></pre>
+                        </div>
+
+                        <h3>Debugging Telemetry</h3>
+                        <p>Enable console exporter for debugging:</p>
+                        <div class="code-block">
+                            <pre><code># In ~/.env.cc
+OTEL_METRICS_EXPORTER=console
+OTEL_LOGS_EXPORTER=console
+
+# Run Claude Code to see telemetry in terminal
+cc</code></pre>
+                        </div>
+
+                        <h3>Custom OTEL Collectors</h3>
+                        <p>Point to different collectors for different environments:</p>
+                        <div class="code-block">
+                            <pre><code># Development
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+
+# Staging
+OTEL_EXPORTER_OTLP_ENDPOINT=https://staging-otel.example.com:4317
+
+# Production
+OTEL_EXPORTER_OTLP_ENDPOINT=https://prod-otel.example.com:4317
+OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer prod-token"</code></pre>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="content-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Quick Reference</h3>
+                        <ul class="checklist">
+                            <li>Config file: <code>~/.env.cc</code></li>
+                            <li>Profile: <code>~/.zprofile</code></li>
+                            <li>Command: <code>cc</code></li>
+                            <li>OTEL port: <code>4317</code></li>
+                            <li>Grafana port: <code>3000</code></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <h3>Common Tasks</h3>
+                        <ul class="checklist">
+                            <li><a href="#basic-usage">Launch Claude Code</a></li>
+                            <li><a href="#configuration">Edit configuration</a></li>
+                            <li><a href="#connection-handling">Handle OTEL errors</a></li>
+                            <li><a href="#grafana-integration">View metrics</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <h3>External Links</h3>
+                        <ul class="checklist">
+                            <li><a href="https://github.com/ColeMurray/claude-code-otel/blob/main/CLAUDE_OBSERVABILITY.md" target="_blank">OTEL Reference</a></li>
+                            <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Docs</a></li>
+                            <li><a href="https://grafana.com/docs/" target="_blank">Grafana Docs</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="nav-footer">
+                <a href="installation.html" class="nav-prev">
+                    <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Installation</span>
+                </a>
+                <a href="troubleshooting.html" class="nav-next">
+                    <span>Troubleshooting</span>
+                    <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">CC Alias</h3>
+                    <p class="footer-description">
+                        A simple utility that creates a command-line shortcut for launching Claude Code with custom environment configurations.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/netors/cc-alias" target="_blank" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/eruysanchez" target="_blank" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="requirements.html">Requirements</a></li>
+                        <li><a href="installation.html">Installation Guide</a></li>
+                        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Docs</a></li>
+                        <li><a href="https://github.com/netors/cc-alias" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CC Alias Tool was created by <a href="https://x.com/eruysanchez" target="_blank">@eruysanchez</a> under <a href="https://github.com/netors/cc-alias/blob/main/LICENSE" target="_blank">CC0 1.0 Universal (Public Domain Dedication)</a> see <a href="file:///Users/netors/projects/github/netors/cc-alias/disclaimer.html">disclaimer</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Alias - Supercharge Your Claude Code Experience</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">CC Alias</span>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="requirements.html">Requirements</a>
+                <a href="installation.html">Installation</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="troubleshooting.html">Troubleshooting</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-background">
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-badge">Open Claude Code with Open Telemetry configuration by just typing 'cc'</div>
+            <h1 class="hero-title">CC Alias</h1>
+            <p class="hero-description">
+                Transform your Claude Code experience with seamless OpenTelemetry integration. 
+                Monitor, analyze, and optimize your AI-powered development workflow.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="installation.html" class="btn btn-primary btn-large">
+                    <span>Get Started</span>
+                    <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="#quick-install" class="btn btn-secondary btn-large">
+                    <span>Quick Install</span>
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">2min</span>
+                    <span class="stat-label">Setup Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">Zero</span>
+                    <span class="stat-label">Config Required</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Open Source</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="quick-install" class="section section-alt">
+            <div class="container">
+                <div class="quick-install-card">
+                    <h2 class="section-title">Quick Install</h2>
+                    <p class="section-subtitle">Get up and running in seconds with our one-line installer</p>
+                    
+                    <div class="install-command">
+                        <pre><code id="install-command">curl -s https://raw.githubusercontent.com/netors/cc-alias/main/create_cc_alias.sh | bash</code></pre>
+                        <button class="copy-btn" onclick="copyInstallCommand()" aria-label="Copy command">
+                            <svg class="copy-icon" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                            </svg>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                    </div>
+                    
+                    <div class="warning-card">
+                        <svg class="warning-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <strong>Security Notice:</strong> Always review scripts before piping to bash. 
+                            For a safer approach, check our <a href="installation.html">manual installation guide</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title text-center">Why Claude Code Alias?</h2>
+                <p class="section-subtitle text-center">Unlock the full potential of Claude Code with these powerful features</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                        </div>
+                        <h3>Lightning Fast Setup</h3>
+                        <p>Launch Claude Code with a simple <code>cc</code> command. No complex configuration required.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3>Real-time Metrics</h3>
+                        <p>Monitor your Claude Code performance with OpenTelemetry integration and Grafana dashboards.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <h3>Fully Customizable</h3>
+                        <p>Tailor your environment with easy-to-modify configuration files and environment variables.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3>Secure by Design</h3>
+                        <p>Connection validation, environment isolation, and clear error handling keep your workflow safe.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3>Smart Connectivity</h3>
+                        <p>Automatic OTEL endpoint detection with intelligent fallback options for seamless operation.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3>Open Source</h3>
+                        <p>Free to use, modify, and distribute. Join the community and contribute to the project.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="integration-showcase">
+                    <div class="integration-content">
+                        <h2 class="section-title">Seamless OpenTelemetry Integration</h2>
+                        <p class="lead-text">
+                            Connect Claude Code to your existing observability stack with zero friction. 
+                            Our tool automatically configures OTEL exporters, validates connections, and 
+                            ensures your telemetry data flows smoothly.
+                        </p>
+                        
+                        <div class="integration-features">
+                            <div class="integration-feature">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Pre-configured Grafana dashboards</span>
+                            </div>
+                            <div class="integration-feature">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Real-time metrics and logs export</span>
+                            </div>
+                            <div class="integration-feature">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Docker-based collector setup</span>
+                            </div>
+                            <div class="integration-feature">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Automatic connection validation</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cta-group">
+                            <a href="documentation.html" class="btn btn-primary">
+                                Learn More
+                                <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/ColeMurray/claude-code-otel" target="_blank" class="btn btn-ghost">
+                                View claude-code-otel Project
+                                <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="integration-visual">
+                        <div class="brand-showcase">
+                            <img src="image.png" alt="CC Alias - Open Claude Code with Open Telemetry configuration" class="brand-image" />
+                            <div class="flow-diagram">
+                                <div class="flow-step">
+                                    <div class="flow-icon">cc</div>
+                                    <div class="flow-label">CC Command</div>
+                                </div>
+                                <svg class="flow-arrow" viewBox="0 0 40 20">
+                                    <path d="M 5 10 L 35 10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M 30 5 L 35 10 L 30 15" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                                <div class="flow-step">
+                                    <div class="flow-icon">📊</div>
+                                    <div class="flow-label">OTEL Collector</div>
+                                </div>
+                                <svg class="flow-arrow" viewBox="0 0 40 20">
+                                    <path d="M 5 10 L 35 10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M 30 5 L 35 10 L 30 15" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                                <div class="flow-step">
+                                    <div class="flow-icon">📈</div>
+                                    <div class="flow-label">Grafana</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-section">
+                    <h2 class="cta-title">Ready to Enhance Your Claude Code Experience?</h2>
+                    <p class="cta-description">
+                        Join developers who are already monitoring and optimizing their AI-powered workflows.
+                    </p>
+                    <div class="cta-actions">
+                        <a href="installation.html" class="btn btn-primary btn-large">
+                            Start Installation
+                            <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="requirements.html" class="btn btn-secondary btn-large">
+                            Check Requirements
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">CC Alias</h3>
+                    <p class="footer-description">
+                        A simple utility that creates a command-line shortcut for launching Claude Code with custom environment configurations.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/netors/cc-alias" target="_blank" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/eruysanchez" target="_blank" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="installation.html">Installation Guide</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                        <li><a href="requirements.html">Requirements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Docs</a></li>
+                        <li><a href="https://github.com/netors/cc-alias" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CC Alias Tool was created by <a href="https://x.com/eruysanchez" target="_blank">@eruysanchez</a> under <a href="https://github.com/netors/cc-alias/blob/main/LICENSE" target="_blank">CC0 1.0 Universal (Public Domain Dedication)</a> see <a href="file:///Users/netors/projects/github/netors/cc-alias/disclaimer.html">disclaimer</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
